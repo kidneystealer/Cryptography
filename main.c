@@ -46,7 +46,7 @@ if(l == 1) {
     
     if(k == 3) {
        bit_encrypt(f, result);
-        for(int i = 0; i < 12; i++) {
+        for(int i = 0; i < strlen(f); i++) {
             printf("%02x", (unsigned char)result[i]);
 
         }
