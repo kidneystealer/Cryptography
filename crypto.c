@@ -31,33 +31,33 @@ char decode_char(const bool bits[8]) {
 return (unsigned char)charValue;
 }
 
-//3
-void encode_string(const char string[], bool bytes[][8]) {
-    bool bits[8];    
+// //3
+// void encode_string(const char string[], bool bytes[][8]) {
+//     bool bits[8];    
     
-        for(int i = 0; i < strlen(string) + 1; i++){            
-            encode_char(string[i], bits);
-            for (int k = 0; k < 8; k++) {
-                bytes[i][k] = bits[k];   
-             }
+//         for(int i = 0; i < strlen(string) + 1; i++){            
+//             encode_char(string[i], bits);
+//             for (int k = 0; k < 8; k++) {
+//                 bytes[i][k] = bits[k];   
+//              }
              
-        }
+//         }
     
-}
+// }
 
-//4
-void decode_string(const int rows, bool bytes[][8], char string[]){
+// //4
+// void decode_string(const int rows, bool bytes[][8], char string[]){
 
-bool bits[8];
+// bool bits[8];
 
-for(int i = 0; i < rows; i++){
-    for(int j = 0; j < 8; j++){
-        bits[j] = bytes[i][j];
-    }
-    string[i] = decode_char(bits);
-}
+// for(int i = 0; i < rows; i++){
+//     for(int j = 0; j < 8; j++){
+//         bits[j] = bytes[i][j];
+//     }
+//     string[i] = decode_char(bits);
+// }
 
-}
+// }
 
 //5
 void reverse(const char* text, char* result) {
@@ -173,8 +173,9 @@ void bit_encrypt(const char* text, char* result){
         } else { bitss[k] = 1; }
     }
      result[i] = decode_char(bitss);
+     
    }
-  
+  result[strlen(text)] = '\0';
     
 }
 
@@ -183,12 +184,9 @@ void bit_encrypt(const char* text, char* result){
     void bit_decrypt(const char unsigned* text, char unsigned* result) {
         bool bits[8];
         int c = 0;
-        for(int i = 0; i < 1000; i++) {
-        if (text[i] != '\0') {
-            c++;
-        } else {
-            break;
-        }
+        
+        while (text[c] != '\0') {
+            c++;      
     }
         for(int i = 0; i < c; i++){
             encode_char(text[i], bits);
@@ -204,4 +202,5 @@ void bit_encrypt(const char* text, char* result){
         }
         result[i] = decode_char(bits);
     }
+    result[c] = '\0';
     }
